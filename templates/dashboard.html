@@ -1,0 +1,113 @@
+<html>
+
+<head>
+  <!--Bootstrap !-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--outside sources (bootstrap & jquery) !-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Scripts and Style Sheets !-->
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn+SC" rel="stylesheet">
+</head>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class = "nav-img">
+  <img src = "iowa-state-camp.jpg" />
+  </div>
+
+
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav" >
+      <li><a href="/courses"><span class = "glyphicon glyphicon-book"></span> Courses</a><span class="hover"></span></li>
+      <li><a href="/grades"><span class = "glyphicon glyphicon-pencil"></span> Grades</a><span class="hover"></span></li>
+      <li><a href="#"><span class = "glyphicon glyphicon-calendar"></span> Calendar</a><span class="hover"></span></li>
+      <li><a href="#"><span class = "glyphicon glyphicon-envelope"></span> Messages</a><span class="hover"></span></li>
+    </ul>
+  </div>
+  </div>
+</div>
+</nav>
+
+<body>
+
+  <div class="Title1">
+    <img src = "https://www.ameslab.gov/files/imagepicker/k/kgibson/Logo_IowaStUniv.png" />
+  </div>
+
+<!-- this area is going to generate student classes into these buttons. !-->
+
+  <h1><u>Courses</u></h1> <Br />
+
+<div class = "container">
+  {% for row in courses: %}
+    <section class = "col-md-3">
+      <div class = "course-button"><a href = "#"><h2>{{row.course_name}}</h2></a></div>
+    </section>
+  {% endfor %}
+</div>
+
+<br /> <br />
+<!-- to do list; it should generate the 5 most recent to do tasks from assignments !-->
+<section class = "col-md-6">
+  <header class="tasks-header">
+    <h2 class="tasks-title">Tasks</h2>
+  </header>
+  <fieldset class="tasks-list">
+    {% for row in assignments: %}
+      <label class="tasks-list-item">
+        <input type="checkbox" name="task_1" value="1" class="tasks-list-cb" checked>
+        <span class="tasks-list-mark"></span>
+        <span class="tasks-list-desc">{{row.assignment_name}}</span>
+      </label>
+    {% endfor %}
+  </fieldset>
+</section>
+
+<!-- announcment board; it should generate the the recent announcments !-->
+{% block body %}
+<section class = "col-md-6">
+  <header class="tasks-header">
+    <h2 class="tasks-title">Announcements</h2>
+  </header>
+  <fieldset class="announcement-board">
+    <p>
+    {% include "display_posts.html" %}
+    </p>
+  </fieldset>
+</section>
+
+{% if session.username %}
+  <h3>Share New Post</h3>
+  <form action="{{ url_for('add_post') }}" method="post">
+      <dl>
+          <dt>Title:</dt>
+          <dd><input type="text" size="30" name="title"></dd>
+          <dt>Text:</dt>
+          <dd><textarea name="text" rows="5" cols="40"></textarea></dd>
+      </dl>
+      <input type="submit" value="Share">
+  </form>
+{% endif %}
+
+<br>
+
+{% endblock %}
+
+<br /><br />
+
+</body>

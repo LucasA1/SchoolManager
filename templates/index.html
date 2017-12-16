@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <!--Bootstrap !-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--outside sources (bootstrap & jquery) !-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Scripts and Style Sheets !-->
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+  <div class="Title">
+    <img src = "https://www.ameslab.gov/files/imagepicker/k/kgibson/Logo_IowaStUniv.png" />
+  </div>
+
+  <div class="login-wrap">
+  	<div class="login-html">
+      <!-- <div class="Sign-Info"> -->
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab"></label>
+    		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+      <!-- </div> -->
+  		<div class="login-form">
+  			<div class="sign-in-htm">
+                <form action="/login" method="POST">
+  				<div class="group">
+  					<label for="user" class="label">Username</label>
+  					<input name="username" value="{{ request.form.username }}"type="text" class="input">
+  				</div>
+  				<div class="group">
+  					<label for="pass" class="label">Password</label>
+  					<input name="password" value="{{ request.form.password }}" type="password" class="input" data-type="password">
+  				</div>
+  				<div class="group">
+  					<input id="check" type="checkbox" class="check" checked>
+  					<label for="check"><span class="icon"></span> Keep me Signed in</label>
+  				</div>
+  				<div class="group">
+  					<input type="submit" class="button" value="Sign In">
+  				</div>
+                </form>
+  			</div>
+  			</div>
+  		</div>
+  	</div>
+  </div>

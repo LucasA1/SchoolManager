@@ -1,0 +1,86 @@
+<!--This is the basic set up for course functionality. Use this when laying
+out the grades, assignments, or anything else used in the left navigation bar.
+Let me know if you have any questions. I am doing my best to comment as I go.
+!-->
+
+
+<html>
+
+<head>
+  <!--Bootstrap !-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--outside sources (bootstrap & jquery) !-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Scripts and Style Sheets !-->
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn+SC" rel="stylesheet">
+</head>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class = "nav-img">
+  <img src = "iowa-state-camp.jpg" />
+  </div>
+
+
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav" >
+      <li><a href="/courses"><span class = "glyphicon glyphicon-book"></span> Courses</a><span class="hover"></span></li>
+      <li><a href="/grades"><span class = "glyphicon glyphicon-pencil"></span> Grades</a><span class="hover"></span></li>
+      <li><a href="calendar.html"><span class = "glyphicon glyphicon-calendar"></span> Calendar</a><span class="hover"></span></li>
+      <li><a href="messages.html"><span class = "glyphicon glyphicon-envelope"></span> Messages</a><span class="hover"></span></li>
+    </ul>
+  </div>
+  </div>
+</div>
+</nav>
+
+<body>
+
+  <div class="Title1">
+    <img src = "https://www.ameslab.gov/files/imagepicker/k/kgibson/Logo_IowaStUniv.png" />
+  </div>
+
+
+  <!-- this is where you can list grades, assignments, etc. Just get it functioning, and I will make it pretty. !-->
+<div class = "grade-table">
+<h1>Updated Grades</h1>
+    <table>
+
+      <thead>
+        <th>
+          <h1>Course</h1>
+        </th>
+        <th>
+          <h1>Assignment</h1>
+        </th>
+        <th>
+          <h1>Grade</h1>
+        </th>
+      </thead>
+    {% for row in grades: %}
+        <tr>
+          <td>{{row.course_name}}</td>
+          <td>{{row.assignment_name}}</td>
+          <td>{{row.grade}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </p>
+
+</div>
+</body>
